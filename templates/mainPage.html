@@ -164,5 +164,46 @@ document.body.appendChild(boxEle);
     </script>
 
 -->
+<div class="ui-widget-content" style="width:300px;background-color:#aec6cf;border-radius: 25px;box-shadow: 2px 2px 4px #000000">
+    <center>
+        <h5>Ambient Noise</h5>
+    </center>
+    <center>
+        <h6>Coffee Shop</h6>
+        <audio muted class="coffee"autoplay loop src="{{ url_for('static', filename='sounds/coffee.mp3') }}"></audio>
+        <input type="range" id="vol" max="1" min="0" step="0.01" onchange="changevolume(this.value)" />
+    </center>
+    <center>
+        <h6>Rainy and Wind</h6>
+        <audio muted class="rainywind"autoplay loop src="{{ url_for('static', filename='sounds/rainywind.mp3') }}"></audio>
+        <input type="range" id="vol" max="1" min="0" step="0.01" onchange="changevolume2(this.value)" />
+    </center>
+    <center>
+        <h6>Ocean Waves</h6>
+        <audio muted class="ocean"autoplay loop src="{{ url_for('static', filename='sounds/ocean.mp3') }}"></audio>
+        <input type="range" id="vol" max="1" min="0" step="0.01" onchange="changevolume3(this.value)" />
+    </center>
+ 
+</div>
 
+
+
+<script>function changevolume(amount) {
+    var audioobject = document.getElementsByClassName("coffee")[0];
+    audioobject.volume = amount;
+    audioobject.muted=false;
+  }
+</script>
+<script>function changevolume2(amount) {
+    var audioobject = document.getElementsByClassName("rainywind")[0];
+    audioobject.volume = amount;
+    audioobject.muted=false;
+  }
+</script>
+<script>function changevolume3(amount) {
+    var audioobject = document.getElementsByClassName("ocean")[0];
+    audioobject.volume = amount;
+    audioobject.muted=false;
+  }
+</script>
 {% endblock %} 
