@@ -206,11 +206,11 @@ def delete():
         account = miispaceDB.getInfo(session["user"])
 
         name=account["username"]## testing
-        resetNote(name)
+        miispaceDB.resetNote(name)
         account = miispaceDB.getInfo(session["user"])
         sticky_notes = account["sticky_notes"]
 
-        return render_template('stickynotes.html',name=name, signedIn= isloggedIn(), bg = bgImage, pics =pictures, sticky = sticky_notes)
+        return render_template('stickynotes.html',name=name, signedIn= isloggedIn(), sticky = sticky_notes)
     else:
         return render_template('signin.html', signedIn= isloggedIn())
 

@@ -7,9 +7,10 @@
 {% block body %}
 
 <center>
+<h4>Edit Sticky Notes</h4>
 <table>
     <tr>
-        <th>Sticky Notes</th>
+        <th>Current Sticky Notes</th>
     </tr>
     {% for note in sticky%}
     <tr>
@@ -22,11 +23,14 @@
 
 </center>
 <form style="text-align: center;" action="/stickynotes" method="POST">
-    <h4>Edit Sticky Notes</h4>
     <div>
-        <input type="text" placeholder="Enter Text" name="text"  style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br>
+        <input type="text" placeholder="Enter New Note Text" name="text"  style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br>
     </div>
+    <br>
     <button type="submit" style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;"><strong>Add Note</strong></button>
-    <a href="delete"><button style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;"><strong>Delete All Notes</strong></button></a>
 </form> 
+<br>
+<center>
+    <a href="delete"><button style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;"><strong>Delete All Notes</strong></button></a>
+</center>
 {% endblock %} 
