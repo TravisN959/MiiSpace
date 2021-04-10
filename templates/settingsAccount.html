@@ -2,12 +2,44 @@
 
 {% block head %}
 <script src="https://kit.fontawesome.com/368a12c127.js" crossorigin="anonymous"></script>
-<Title>MiiSpace Settings Page</Title>
+<Title>MiiSpace Settings Account Page</Title>
 {% endblock %}
 
 {% block body %}
 
-
+<div class="">
+    <br>
+    <br>
+    <br>
+    <center><h1>Account Settings</h1></center>
+    <form style="text-align: center;" action="/settingsAcccount" method="POST">
+        <div>
+            <img src="{{ url_for('static', filename='images/Sample_User_Icon.png') }}" style="border-radius: 50px;width: 35px;position:absolute; z-index: 2;pointer-events: none;background-color:white;">
+            <input type="text" placeholder="Enter username" name="username" required style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br>
+        </div>
+        <br>
+        <div>
+            <img src="{{ url_for('static', filename='images/unlock.png') }}" style="border-radius: 50px;width: 35px;position:absolute; z-index: 2;pointer-events: none;background-color:white;">
+            <input type="password" placeholder="Enter Password" name="password"  style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br><br>
+        </div>
+        <div>
+            <img src="{{ url_for('static', filename='images/lock.png') }}" style="border-radius: 50px;width: 35px;position:absolute; z-index: 2;pointer-events: none;background-color:white;">
+            <input type="password" placeholder="Re-Enter Password" name="repeatPassword" style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br><br>
+        </div>
+        <div>
+            <img src="{{ url_for('static', filename='images/Sample_User_Icon.png') }}" style="border-radius: 50px;width: 35px;position:absolute; z-index: 2;pointer-events: none;background-color:white;">
+            <input type="text" placeholder="Enter phone" name="phone" required style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br>
+        </div>
+        <br>
+        <button type="submit" style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;"><strong>Save</strong></button>
+    </form> 
+    {% if ERROR %}
+    <br>
+    <h5 style="color: red;text-align: center;">{{ERROR_MSG}}</h5>    
+    {% endif %}
+</div>
+<br>
+<br>
 
 <script>
 
