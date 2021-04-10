@@ -2,31 +2,54 @@
 
 {% block head %}
 
-<Title>Rally Sign In</Title>
+<Title>MiiSpace Sign In</Title>
 {% endblock %}
 
 {% block body %}
 
-<div class="content">
+<img src="{{ url_for('static', filename='images/leaves.png') }}" style="width: 100%;position:absolute; z-index: 2;pointer-events: none;">
+
+<div data-aos="fade-up"data-aos-anchor-placement="top-bottom"data-aos-duration="2000" >
+<center>
+<div class="content"style="background-image:url('{{ url_for('static', filename='images/login.png') }}');background-repeat:no-repeat;background-position: center center;background-size: contain">
     
     <div class="">
         <br>
-        <center><h1 >Sign In</h1></center>
-        <form style="text-align: center;" action="/signin" method="POST">
-            <label for="username" >Username:</label><br>
-            <input type="text" placeholder="Enter username" name="username" required><br>
-            <label for="password">Password:</label><br>
-            <input type="password" placeholder="Enter Password" name="password" required><br><br>
-            <button type="submit" class="signupbtn btn btn-dark">Sign In</button>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <center><h1 >Welcome to Tina's Website</h1></center>
+        <form style="text-align: center;" action="/signin" method="POST" >
+            <div>
+                <img src="{{ url_for('static', filename='images/Sample_User_Icon.png') }}" style="border-radius: 50px;width: 35px;position:absolute; z-index: 2;pointer-events: none;background-color:white;">
+                <input type="text" placeholder="Username" name="username" required, style="border-radius: 25px;font-size:20px;opacity:.5;text-align: center;"><br>
+            </div>
+            <br>
+            <div>
+                <img src="{{ url_for('static', filename='images/unlock.png') }}" style="border-radius: 50px;width: 35px;position:absolute; z-index: 2;pointer-events: none;background-color:white;">
+                <input type="password" placeholder="Password" name="password" required, style="border-radius: 25px;font-size:20px;opacity:.5;text-align: center"><br><br>
+            </div>
+            <button type="submit" style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;"><strong>Log In</strong></button>
+            
         </form> 
+
+        <h5> ──────── or ──────── </h5>
+        <a href=signup><button style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;"><strong>Sign Up</strong></button></a>
         {% if ERROR %}
         <br>
         <h5 style="color: red;text-align: center;">{{ERROR_MSG}}</h5>    
         {% endif %}
+        
         <br>
     </div>
     <br>
     <br>
     
 </div>
+</div>
+</center>
 {% endblock %} 
