@@ -1,11 +1,16 @@
 from flask import Flask, render_template, url_for, request, redirect, session
 import json
+import os
+from werkzeug.utils import secure_filename
 import miispaceDB
 
 
 
 app = Flask(__name__)
 app.secret_key = "miispace"
+UPLOAD_FOLDER = '/uploads'
+
+
 @app.route('/', methods=['POST', 'GET'])
 def index():
     if request.method == 'POST':
@@ -118,7 +123,12 @@ def myImages():
     if "user" in session:#checks to see if logged in
         #process distance from user to rallys
         if request.method == 'POST':
-            new_image = request.form['myImages']
+            
+            new_image = request.files['myImages']
+            if new_image.filename != '':
+                fileName = secure_filename(new_image.filename)
+                new_image.save(os.path.join(app.config['UPLOAD_FOLDER'], fileName))
+                new_image.save(fileName)
             
             account = miispaceDB.getInfo(session["user"])
             name=account["username"]

@@ -45,7 +45,7 @@ def setUsername(oldUser, newUser):
     
 def addImage(name,new_image):
     images=(collection.find_one({"username": name})['pictures'])
-    images.append(new_image)
+    images.append(new_image.filename)
     collection.update_one({ "username": name },{"$set": { "pictures": images }})
 
 def resetImage(name):
