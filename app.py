@@ -84,8 +84,8 @@ def mainPage():
     else:
         return render_template('signin.html', signedIn= isloggedIn())
 
-@app.route('/settings', methods=['POST', 'GET'])
-@app.route('/settings.html', methods=['POST', 'GET'])
+@app.route('/settingsAccount', methods=['POST', 'GET'])
+@app.route('/settingsAccount.html', methods=['POST', 'GET'])
 def settingsPage():
     if "user" in session:#checks to see if logged in
         #process distance from user to rallys
