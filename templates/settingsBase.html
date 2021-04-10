@@ -23,7 +23,13 @@
                 </li>
                 {% if signedIn %}
                 <li class="nav-item">
-                    <a class="nav-link" href="/mainPage">Main Page</a>
+                    <a class="nav-link" href="/mainPage">My Page <i class="fas fa-file"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/stickynotes">Edit Sticky Notes <i class="fas fa-sticky-note"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/myImages">Manage Images <i class="fas fa-file-image"></i></a>
                 </li>
                 {% endif %}
             </ul>
@@ -37,6 +43,9 @@
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             {% if signedIn %}
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="settingsAbout.html">Settings</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="logout">Logout</a>
                 </li>
@@ -56,13 +65,15 @@
     </nav>
     
     
-    <div class="sidebar">
+    <div class="sidebar" style="z-index: 3;">
         
         <button class="btn"><a href="/settingsAccount">Account <i class="far fa-user"></i></a></button>
         <button class="btn"><a href="/settingsAppearance">Appearance <i class="fas fa-eye"></i></a></button>
         <button class="btn"><a href="/settingsHelp">Help <i class="fas fa-question-circle"></i></a></button>
         <button class="btn"><a href="/settingsAbout">About <i class="fas fa-info-circle"></i></a></button>
       </div>
+      <img src="{{ url_for('static', filename='images/leaves.png') }}" style="width: 100%;position:absolute; z-index: 2;pointer-events: none;">
+
     {% block body %}{% endblock %}
     <script>
         AOS.init();
