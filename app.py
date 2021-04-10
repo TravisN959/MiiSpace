@@ -25,7 +25,8 @@ def signup():
         username = username.lower()
         password = request.form['password']
         repeatPass = request.form['repeatPassword']
-
+        phone = request.form['phone']
+        name = request.form['name']
 
         if(password != repeatPass): #check for repeat password
             try:
@@ -36,7 +37,7 @@ def signup():
                 return render_template('signup.html', ERROR=True, ERROR_MSG="Duplicate: Choose a new username", signedIn= isloggedIn())
             except: return "Error in duplicate username"
         else:#add account to db
-            miispaceDB.setupAccount(username, password)
+            miispaceDB.setupAccount(username, password, phone, name)
             try:
                 return signupSuccess()
             except:
@@ -118,12 +119,69 @@ def settingsPage():
 
         account = miispaceDB.getInfo(session["user"])
 
-        name=account["username"]## testing
-        bgImage = account["bgImage"]
-        pictures = account["pictures"]
-        sticky_notes = account["sticky_notes"]
+        username=account["username"]## testing
+        phone=account["phone"]
+        name=account["name"]
 
-        return render_template('settingsAccount.html',name=name, signedIn= isloggedIn(), bg = bgImage, pics =pictures, sticky = sticky_notes)
+        
+
+        if request.method == 'POST':
+            usernameForm = request.form['username']
+            usernameForm = usernameForm.lower()
+            password = request.form['password']
+            repeatPass = request.form['repeatPassword']
+            phone = request.form['phone']
+            if(len(password) != 0 and password != repeatPass): #check for repeat password
+                return render_template('settingsAccount.html', name=name, username=username, phone=phone,ERROR=True, ERROR_MSG="Passwords must be the same", signedIn= isloggedIn())
+            
+            return render_template('settingsAccount.html',name=name, username=username, phone=phone, signedIn= isloggedIn(), ERROR=False)
+        else:
+            return render_template('settingsAccount.html',name=name, username=username, phone=phone, signedIn= isloggedIn())
+    else:
+        return render_template('signin.html', signedIn= isloggedIn())
+
+@app.route('/settingsAppearance', methods=['POST', 'GET'])
+@app.route('/settingsAppearance.html', methods=['POST', 'GET'])
+def settingsAppearancePage():
+    if "user" in session:#checks to see if logged in
+        #process distance from user to rallys
+
+        account = miispaceDB.getInfo(session["user"])
+
+        name=account["username"]## testing
+        phone=account["phone"]
+
+        return render_template('settingsAppearance.html',name=name, phone=phone, signedIn= isloggedIn())
+    else:
+        return render_template('signin.html', signedIn= isloggedIn())
+
+@app.route('/settingsAbout', methods=['POST', 'GET'])
+@app.route('/settingsAbout.html', methods=['POST', 'GET'])
+def settingsAboutPage():
+    if "user" in session:#checks to see if logged in
+        #process distance from user to rallys
+
+        account = miispaceDB.getInfo(session["user"])
+
+        name=account["username"]## testing
+        phone=account["phone"]
+
+        return render_template('settingsAbout.html',name=name, phone=phone, signedIn= isloggedIn())
+    else:
+        return render_template('signin.html', signedIn= isloggedIn())
+
+@app.route('/settingsHelp', methods=['POST', 'GET'])
+@app.route('/settingsHelp.html', methods=['POST', 'GET'])
+def settingsHelpPage():
+    if "user" in session:#checks to see if logged in
+        #process distance from user to rallys
+
+        account = miispaceDB.getInfo(session["user"])
+
+        name=account["username"]## testing
+        phone=account["phone"]
+
+        return render_template('settingsHelp.html',name=name, phone=phone, signedIn= isloggedIn())
     else:
         return render_template('signin.html', signedIn= isloggedIn())
 
