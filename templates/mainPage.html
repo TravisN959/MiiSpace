@@ -1,11 +1,77 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 <script src="https://kit.fontawesome.com/368a12c127.js" crossorigin="anonymous"></script>
 <Title>MiiSpace Main Page</Title>
+<style>
+    #draggable {
+         width: 150px; 
+         height: 150px;
+         padding: 0.5em; 
+         background-color: #e0bbe4;
+         box-shadow: 2px 2px 4px #000000;
+    }
+    body{
+        background-image: url("{{ url_for('static', filename='images/bulletinboard.jpg') }}");
+    }
+
+</style>
+
+<script>
+    $(function() {
+        $( ".ui-widget-content" ).draggable();
+    });
+</script>
 {% endblock %}
 
 {% block body %}
+{% for note in sticky%}
+<div id="draggable" class="ui-widget-content" style="float:right">
+    <p>{{note}}</p>
+</div>
+    {%  endfor %}
+<script>
+    var draggableElements = document.getElementsByClassName("draggable");
+
+for(var i = 0; i < draggableElements.length; i++){
+    dragElement(draggableElements[i]);
+}
+
+function dragElement(elmnt) {
+    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    if (document.getElementById(elmnt.id + "header")) {
+        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+    } else {
+        elmnt.onmousedown = dragMouseDown;
+    }
+    function dragMouseDown(e) {
+        e = e || window.event;
+        pos3 = parseInt(e.clientX);
+        pos4 = parseInt(e.clientY);
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+        return false;
+    }
+
+    function elementDrag(e) {
+        e = e || window.event;
+        pos1 = pos3 - parseInt(e.clientX);
+        pos2 = pos4 - parseInt(e.clientY);
+        pos3 = parseInt(e.clientX);
+        pos4 = parseInt(e.clientY);
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        console.log(elmnt.offsetTop)
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    }
+
+    function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+}
+</script>
 <!--
 <div style="position: absolute; top: 60px; right: 10px;  width: 100px; text-align:right;">
     <button class="btn"></button><i class="fas fa-cog"></i></button>
@@ -98,5 +164,5 @@ document.body.appendChild(boxEle);
     </script>
 
 -->
-<p>{{ name }}</p>
+
 {% endblock %} 
