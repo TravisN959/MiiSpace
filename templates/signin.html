@@ -17,12 +17,8 @@
         <br>
         <br>
         <br>
-        <br>
-        <br>
-        <br>
-        <br>
-
-        <center><h1 >Welcome to Tina's Website</h1></center>
+        <center><img src="{{ url_for('static', filename='images/logo.png') }}" style="width: 200px; z-index: 2;pointer-events: none;"></center>
+        <center><h1 >Log In</h1></center>
         <form style="text-align: center;" action="/signin" method="POST" >
             <div>
                 <img src="{{ url_for('static', filename='images/Sample_User_Icon.png') }}" style="border-radius: 50px;width: 35px;position:absolute; z-index: 2;pointer-events: none;background-color:white;">
