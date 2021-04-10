@@ -97,7 +97,7 @@ def settingsPage():
         pictures = account["pictures"]
         sticky_notes = account["sticky_notes"]
 
-        return render_template('settings.html',name=name, signedIn= isloggedIn(), bg = bgImage, pics =pictures, sticky = sticky_notes)
+        return render_template('settingsAccount.html',name=name, signedIn= isloggedIn(), bg = bgImage, pics =pictures, sticky = sticky_notes)
     else:
         return render_template('signin.html', signedIn= isloggedIn())
 

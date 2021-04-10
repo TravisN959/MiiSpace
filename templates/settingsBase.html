@@ -21,6 +21,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/">Home</a>
                 </li>
+                {% if signedIn %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/mainPage">Main Page</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
         <div class="mx-auto order-0">
@@ -53,10 +58,10 @@
     
     <div class="sidebar">
         
-        <button class="btn"><a href="#">Add Image <i class="fas fa-images"></i></a></button>
-        <button class="btn" onclick = postSticky()><a href="#">Add Note <i class="fas fa-sticky-note"></i> </a></button>
-        <button class="btn"><a href="#">Add Background <i class="far fa-images"></i></a></button>
-       
+        <button class="btn"><a href="#">Account <i class="far fa-user"></i></a></button>
+        <button class="btn"><a href="#">Appearance <i class="fas fa-eye"></i></a></button>
+        <button class="btn"><a href="#">Help <i class="fas fa-question-circle"></i></a></button>
+        <button class="btn"><a href="#">About <i class="fas fa-info-circle"></i></a></button>
       </div>
     {% block body %}{% endblock %}
     <script>

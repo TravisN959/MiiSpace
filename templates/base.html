@@ -18,9 +18,17 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul class="navbar-nav mr-auto">
+                
+
                 <li class="nav-item">
                     <a class="nav-link" href="/">Home</a>
                 </li>
+
+                {% if signedIn %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/mainPage">Main Page</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
         <div class="mx-auto order-0">
