@@ -102,6 +102,7 @@ def stickynotes():
             miispaceDB.addNote(name,new_text)
             account = miispaceDB.getInfo(session["user"])
             sticky_notes = account["sticky_notes"]
+            
             return render_template('stickynotes.html',sticky = sticky_notes,signedIn= isloggedIn())
         else:
             account = miispaceDB.getInfo(session["user"])
