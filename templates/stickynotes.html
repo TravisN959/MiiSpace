@@ -2,6 +2,7 @@
 
 {% block head %}
 <Title>MiiSpace StickyNote</Title>
+<script src="https://kit.fontawesome.com/368a12c127.js" crossorigin="anonymous"></script>
 {% endblock %}
 
 {% block body %}
@@ -10,21 +11,27 @@
 <h4>Edit Sticky Notes</h4>
 <table>
     <tr>
-        <th>Current Sticky Notes</th>
+        <th style="text-align:center">Current Sticky Notes</th>
     </tr>
     {% for note in sticky%}
-    <tr>
+    <tr >
         <td>
             {{note}}
         </td>
     </tr>
     {%  endfor %}
 </table>
-
+<br>
 </center>
 <form style="text-align: center;" action="/stickynotes" method="POST">
     <div>
+        <textarea id="text" name="text" rows="3" cols="50" style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;">
+
+
+        </textarea>
+        <!--
         <input type="text" placeholder="Enter New Note Text" name="text"  style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br>
+            -->
     </div>
     <br>
     <button type="submit" style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;"><strong>Add Note</strong></button>
