@@ -91,6 +91,11 @@ def stickynotes():
         #process distance from user to rallys
         if request.method == 'POST':
             new_text = request.form['text']
+            if(new_text==""):
+                account = miispaceDB.getInfo(session["user"])
+                sticky_notes = account["sticky_notes"]
+                return render_template('stickynotes.html',sticky = sticky_notes,signedIn= isloggedIn())
+            
             account = miispaceDB.getInfo(session["user"])
             name=account["username"]
             miispaceDB.addNote(name,new_text)
@@ -133,6 +138,23 @@ def isloggedIn():
 def logout():
     session.pop("user", None)
     return redirect(url_for("signin"))
+
+
+@app.route('/delete')
+def delete():
+    if "user" in session:#checks to see if logged in
+        #process distance from user to rallys
+
+        account = miispaceDB.getInfo(session["user"])
+
+        name=account["username"]## testing
+        resetNote(name)
+        account = miispaceDB.getInfo(session["user"])
+        sticky_notes = account["sticky_notes"]
+
+        return render_template('stickynotes.html',name=name, signedIn= isloggedIn(), bg = bgImage, pics =pictures, sticky = sticky_notes)
+    else:
+        return render_template('signin.html', signedIn= isloggedIn())
 
 if __name__ == "__main__":
     app.run(debug=True)

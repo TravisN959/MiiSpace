@@ -33,6 +33,10 @@ def addNote(name,new_text):
     notes.append(new_text)
     collection.update_one({ "username": name },{"$set": { "sticky_notes": notes }})
 
+def resetNote(name):
+    notes=[]
+    collection.update_one({ "username": name },{"$set": { "sticky_notes": notes }})
+
 
 
 def checkDuplicateUsername(username):
