@@ -28,6 +28,12 @@ def getInfo(username):
 def getAccounts():
     return collection.find({})
 
+def addNote(name,new_text):
+    notes=(collection.find_one({"username": name})['sticky_notes'])
+    notes.append(new_text)
+    collection.update_one({ "username": name },{"$set": { "sticky_notes": notes }})
+
+
 
 def checkDuplicateUsername(username):
     query = {

@@ -84,6 +84,27 @@ def mainPage():
     else:
         return render_template('signin.html', signedIn= isloggedIn())
 
+@app.route('/stickynotes', methods=['POST', 'GET'])
+@app.route('/stickynotes.html', methods=['POST', 'GET'])
+def stickynotes():
+    if "user" in session:#checks to see if logged in
+        #process distance from user to rallys
+        if request.method == 'POST':
+            new_text = request.form['text']
+            account = miispaceDB.getInfo(session["user"])
+            name=account["username"]
+            miispaceDB.addNote(name,new_text)
+            account = miispaceDB.getInfo(session["user"])
+            sticky_notes = account["sticky_notes"]
+            return render_template('stickynotes.html',sticky = sticky_notes,signedIn= isloggedIn())
+        else:
+            account = miispaceDB.getInfo(session["user"])
+            sticky_notes = account["sticky_notes"]
+            return render_template('stickynotes.html',sticky = sticky_notes,signedIn= isloggedIn())
+
+    else:
+        return render_template('signin.html', signedIn= isloggedIn())
+
 @app.route('/settingsAccount', methods=['POST', 'GET'])
 @app.route('/settingsAccount.html', methods=['POST', 'GET'])
 def settingsPage():

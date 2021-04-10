@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<Title>MiiSpace StickyNote</Title>
+{% endblock %}
+
+{% block body %}
+
+<center>
+<table>
+    <tr>
+        <th>Sticky Notes</th>
+    </tr>
+    {% for note in sticky%}
+    <tr>
+        <td>
+            {{note}}
+        </td>
+    </tr>
+    {%  endfor %}
+</table>
+</center>
+<form style="text-align: center;" action="/stickynotes" method="POST">
+    <h4>Add Sticky Note</h4>
+    <div>
+        <input type="text" placeholder="Enter Text" name="text" required style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br>
+    </div>
+    <button type="submit" style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;"><strong>Add Note</strong></button>
+</form> 
+{% endblock %} 
