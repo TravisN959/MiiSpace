@@ -2,11 +2,32 @@
 
 {% block head %}
 
-<Title>MiiSpace SignUp</Title>
+<Title>MiiSpace Sign Up</Title>
 {% endblock %}
 
 {% block body %}
 
-<h1>SignUp</h1>
-
+<div class="content">
+    
+    <div class="">
+        <br>
+        <center><h1>Sign up</h1></center>
+        <form style="text-align: center;" action="/signup" method="POST">
+            <h4>Login Info</h4>
+            <label for="username">Username:</label><br>
+            <input type="text" placeholder="Enter username" name="username" required><br>
+            
+            <label for="password">Password:</label><br>
+            <input type="password" placeholder="Enter Password" name="password" required><br><br>
+            
+            <label for="repeatPassword">Re-Type Password:</label><br>
+            <input type="password" placeholder="Enter Password Again" name="repeatPassword" required><br><br>
+            <hr>
+            <button type="submit" class="signupbtn btn btn-dark">Sign Up</button>
+        </form> 
+    </div>
+    <br>
+    <br>
+    
+</div>
 {% endblock %} 

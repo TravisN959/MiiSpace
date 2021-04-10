@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<Title>MiiSpace Sign Up</Title>
+{% endblock %}
+
+{% block body %}
+
+<div class="content">
+    
+    <div class="">
+        <br>
+        <h1>Sign up Successful!</h1>
+        <h3 style="text-align: center;" >Click <a href="signin">HERE</a> to sign in!</h3>
+        <h5 >Redirecting to sign in page in 3 seconds...</h5>
+        <script>
+            var timer = setTimeout(function() {
+                window.location='/signin'
+            }, 3000);
+        </script>
+        
+    </div>
+    <br>
+    <br>
+    
+</div>
+{% endblock %} 

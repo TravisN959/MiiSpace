@@ -1,19 +1,18 @@
 import pymongo
-import mongoKEYS
+from pymongo import MongoClient
 
-#Gets database
-client = pymongo.MongoClient(mongoKEYS.getKEY())
-database = client["MiiSpace"]
 
-#Our specific database for this file
-collection = database["AccountInfo"]
+client = pymongo.MongoClient("mongodb+srv://DryadFam:Dryad@cluster0.laurd.mongodb.net/MiiSpace?retryWrites=true&w=majority")
+database=client.MiiSpace
+collection = database.AccountInfo
+
 
 
 #username = String, password = String, bgImage = list(String), 
 #pictures = list(tuple(String, tuple(x,y))), sticky_notes = list(tuple(String, tuple(x,y)))
 
 #remember to make default values in signup function
-def setupAccount(username, password, bgImage, pictures, sticky_notes):
+def setupAccount(username, password, bgImage=[], pictures=[], sticky_notes=[]):
     acct = {
         "username" : username,
         "password" : password,
