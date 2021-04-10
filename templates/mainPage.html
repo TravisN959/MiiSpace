@@ -185,6 +185,7 @@ document.body.appendChild(boxEle);
     </center>
  
 </div>
+<span id="clock" class="ui-widget-content" style="font-size: 30px;"></span>
 
 
 
@@ -205,5 +206,20 @@ document.body.appendChild(boxEle);
     audioobject.volume = amount;
     audioobject.muted=false;
   }
+</script>
+<script>
+    (function () {
+
+var clockElement = document.getElementById( "clock" );
+
+function updateClock ( clock ) {
+  clock.innerHTML = new Date().toLocaleTimeString();
+}
+
+setInterval(function () {
+    updateClock( clockElement );
+}, 1000);
+
+}());
 </script>
 {% endblock %} 
