@@ -1,3 +1,53 @@
 body{
     background-color: #FFF7DB;
 }
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #a8baa9;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    z-index:0;
+  }
+  
+  .sidebar a {
+    display: block;
+    color: white;
+    padding: 16px;
+    text-decoration: none;
+  }
+   
+  .sidebar a:hover {
+    background-color: #555;
+    color: white;
+  }
+  
+  
+
+  #mydiv {
+    
+    width: 960px;
+    margin-left: 50%;
+    z-index:1;
+   }
+
+   .stickyNote {
+    margin: auto;
+    width: 300px; 
+    background: yellow; /* Fallback */
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#EBEB00), to(#C5C500));
+    background: -moz-linear-gradient(100% 100% 90deg, #C5C500, #EBEB00);
+    padding: 20px 20px 20px 20px;
+    -webkit-box-shadow: 0px 10px 30px #000;
+    -moz-box-shadow: 0px 10px 30px #000;
+   }
+
+   #mydivheader {
+    padding: 10px;
+    cursor: move;
+    z-index: 10;
+    background-color: #2196F3;
+    color: #fff;
+  }

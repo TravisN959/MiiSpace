@@ -1,11 +1,32 @@
 {% extends 'base.html' %}
 
 {% block head %}
-
+<script src="https://kit.fontawesome.com/368a12c127.js" crossorigin="anonymous"></script>
 <Title>MiiSpace Main Page</Title>
 {% endblock %}
 
 {% block body %}
 
+<div style="position: absolute; top: 60px; right: 10px;  width: 100px; text-align:right;">
+    <button class="btn"></button><i class="fas fa-cog"></i></button>
+  </div>
+<div class="sidebar">
+    
+    <button class="btn"><a href="#">Add Image <i class="fas fa-images"></i></a></button>
+    <button class="btn" onclick = postSticky()><a href="#">Add Note <i class="fas fa-sticky-note"></i> </a></button>
+    <button class="btn"><a href="#">Add Background <i class="far fa-images"></i></a></button>
+   
+  </div>
+
+<div id="mydiv"> 
+<div class="stickyNote ">
+    <div id="mydivheader">Click here to move</div>
+<p>Lorem ipsum dolor sit amet, etc.</div>
+</div>
+</div>
+
+<script>
+
+</script>
 <p>{{ name }}</p>
 {% endblock %} 
