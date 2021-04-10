@@ -59,5 +59,23 @@ def signin():
 @app.route('/signupSuccess')
 def signupSuccess():
     return render_template('signupSuccess.html')
+
+
+
+@app.route('/mainPage', methods=['POST', 'GET'])
+@app.route('/mainPage.html', methods=['POST', 'GET'])
+def mainPage():
+    if "user" in session:#checks to see if logged in
+        #process distance from user to rallys
+
+        account = miispaceDB.getInfo("user")
+
+        bgImage = account["bgImage"]
+        pictures = account["pictures"]
+        sticky_notes account["sticky_notes"]
+
+        return render_template('mainPage.html',signedIn= isloggedIn(), bg = bgImage, pics =pictures, sticky = sticky_notes)
+    else:
+        return render_template('signin.html', signedIn= isloggedIn())
 if __name__ == "__main__":
     app.run(debug=True)
