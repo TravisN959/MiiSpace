@@ -84,6 +84,24 @@ def mainPage():
     else:
         return render_template('signin.html', signedIn= isloggedIn())
 
+@app.route('/settings', methods=['POST', 'GET'])
+@app.route('/settings.html', methods=['POST', 'GET'])
+def settingsPage():
+    if "user" in session:#checks to see if logged in
+        #process distance from user to rallys
+
+        account = miispaceDB.getInfo(session["user"])
+
+        name=account["username"]## testing
+        bgImage = account["bgImage"]
+        pictures = account["pictures"]
+        sticky_notes = account["sticky_notes"]
+
+        return render_template('settings.html',name=name, signedIn= isloggedIn(), bg = bgImage, pics =pictures, sticky = sticky_notes)
+    else:
+        return render_template('signin.html', signedIn= isloggedIn())
+
+
 def isloggedIn():
     if "user" in session:
         return True
