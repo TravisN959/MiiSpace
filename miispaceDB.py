@@ -12,13 +12,15 @@ collection = database.AccountInfo
 #pictures = list(tuple(String, tuple(x,y))), sticky_notes = list(tuple(String, tuple(x,y)))
 
 #remember to make default values in signup function
-def setupAccount(username, password, bgImage=[], pictures=[], sticky_notes=[]):
+def setupAccount(username, password, phone, name, bgImage=[], pictures=[], sticky_notes=[]):
     acct = {
         "username" : username,
         "password" : password,
         "bgImage" : bgImage,
         "pictures" : pictures,
         "sticky_notes" : sticky_notes,
+        "phone" : phone,
+        "name" : name,
     }
     collection.insert_one(acct)
 
