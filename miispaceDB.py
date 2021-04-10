@@ -40,7 +40,18 @@ def resetNote(name):
     collection.update_one({ "username": name },{"$set": { "sticky_notes": notes }})
 
 
+def setUsername(oldUser, newUser):
+    collection.update_one({"username": oldUser}, {"$set":{"username": newUser}})
 
+def setPassword(username, password):
+    collection.update_one({"username": username}, {"$set":{"password": password}})
+
+def setName(username, name):
+    collection.update_one({"username": username}, {"$set":{"name": name}})
+
+def setPhone(username, phone):
+    collection.update_one({"username": username}, {"$set":{"phone": phone}})
+    
 def checkDuplicateUsername(username):
     query = {
         "username" : username
