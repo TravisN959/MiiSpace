@@ -2,11 +2,31 @@
 
 {% block head %}
 
-<Title>MiiSpace SignIn</Title>
+<Title>Rally Sign In</Title>
 {% endblock %}
 
 {% block body %}
 
-<h1>SignIn</h1>
-
+<div class="content">
+    
+    <div class="">
+        <br>
+        <center><h1 >Sign In</h1></center>
+        <form style="text-align: center;" action="/signin" method="POST">
+            <label for="username" >Username:</label><br>
+            <input type="text" placeholder="Enter username" name="username" required><br>
+            <label for="password">Password:</label><br>
+            <input type="password" placeholder="Enter Password" name="password" required><br><br>
+            <button type="submit" class="signupbtn btn btn-dark">Sign In</button>
+        </form> 
+        {% if ERROR %}
+        <br>
+        <h5 style="color: red;text-align: center;">{{ERROR_MSG}}</h5>    
+        {% endif %}
+        <br>
+    </div>
+    <br>
+    <br>
+    
+</div>
 {% endblock %} 

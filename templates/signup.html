@@ -25,6 +25,10 @@
             <hr>
             <button type="submit" class="signupbtn btn btn-dark">Sign Up</button>
         </form> 
+        {% if ERROR %}
+        <br>
+        <h5 style="color: red;text-align: center;">{{ERROR_MSG}}</h5>    
+        {% endif %}
     </div>
     <br>
     <br>
