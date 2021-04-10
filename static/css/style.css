@@ -27,10 +27,11 @@ body{
   
 
   #mydiv {
-    
-    width: 960px;
-    margin-left: 50%;
-    z-index:1;
+    position: absolute;
+    z-index: 9;
+    background-color: #f1f1f1;
+    border: 1px solid #d3d3d3;
+    text-align: center;
    }
 
    .stickyNote {
@@ -45,7 +46,7 @@ body{
    }
 
    #mydivheader {
-    padding: 10px;
+    padding: 5px;
     cursor: move;
     z-index: 10;
     background-color: #2196F3;
