@@ -72,7 +72,7 @@ def mainPage():
 
         bgImage = account["bgImage"]
         pictures = account["pictures"]
-        sticky_notes account["sticky_notes"]
+        sticky_notes = account["sticky_notes"]
 
         return render_template('mainPage.html',signedIn= isloggedIn(), bg = bgImage, pics =pictures, sticky = sticky_notes)
     else:
