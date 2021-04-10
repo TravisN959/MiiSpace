@@ -42,6 +42,15 @@ def resetNote(name):
 
 def setUsername(oldUser, newUser):
     collection.update_one({"username": oldUser}, {"$set":{"username": newUser}})
+    
+def addImage(name,new_image):
+    images=(collection.find_one({"username": name})['pictures'])
+    images.append(new_image)
+    collection.update_one({ "username": name },{"$set": { "pictures": images }})
+
+def resetImage(name):
+    pics = []
+    collection.update_one({ "username": name },{"$set": { "pictures": pics }})
 
 def setPassword(username, password):
     collection.update_one({"username": username}, {"$set":{"password": password}})

@@ -112,6 +112,28 @@ def stickynotes():
     else:
         return render_template('signin.html', signedIn= isloggedIn())
 
+@app.route('/myImages', methods=['POST', 'GET'])
+@app.route('/myImages.html', methods=['POST', 'GET'])
+def myImages():
+    if "user" in session:#checks to see if logged in
+        #process distance from user to rallys
+        if request.method == 'POST':
+            new_image = request.form['myImages']
+            
+            account = miispaceDB.getInfo(session["user"])
+            name=account["username"]
+            miispaceDB.addImage(name,new_image)
+            account = miispaceDB.getInfo(session["user"])
+            imagesList = account["pictures"]
+            return render_template('myImages.html',images = imagesList,signedIn= isloggedIn())
+        else:
+            account = miispaceDB.getInfo(session["user"])
+            imagesList = account["pictures"]
+            return render_template('myImages.html',images = imagesList,signedIn= isloggedIn())
+
+    else:
+        return render_template('signin.html', signedIn= isloggedIn())
+
 @app.route('/settingsAccount', methods=['POST', 'GET'])
 @app.route('/settingsAccount.html', methods=['POST', 'GET'])
 def settingsPage():
@@ -205,8 +227,8 @@ def logout():
     return redirect(url_for("signin"))
 
 
-@app.route('/delete')
-def delete():
+@app.route('/deleteNotes')
+def deleteS():
     if "user" in session:#checks to see if logged in
         #process distance from user to rallys
 
@@ -218,6 +240,22 @@ def delete():
         sticky_notes = account["sticky_notes"]
 
         return render_template('stickynotes.html',name=name, signedIn= isloggedIn(), sticky = sticky_notes)
+    else:
+        return render_template('signin.html', signedIn= isloggedIn())
+
+@app.route('/deleteImages')
+def deleteI():
+    if "user" in session:#checks to see if logged in
+        #process distance from user to rallys
+
+        account = miispaceDB.getInfo(session["user"])
+
+        name=account["username"]## testing
+        miispaceDB.resetImage(name)
+        account = miispaceDB.getInfo(session["user"])
+        pics = account["pictures"]
+
+        return render_template('myImages.html',name=name, signedIn= isloggedIn(), images = pics)
     else:
         return render_template('signin.html', signedIn= isloggedIn())
 

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<Title>MiiSpace StickyNote</Title>
+<script src="https://kit.fontawesome.com/368a12c127.js" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block body %}
+
+<center>
+<h4>Edit Images</h4>
+<table>
+    <tr>
+        <th style="text-align:center">Current Images</th>
+    </tr>
+    {% for pic in images%}
+    <tr >
+        <td>
+            <img src={{pic}} alt=""></img>
+        </td>
+    </tr>
+    {%  endfor %}
+</table>
+<br>
+</center>
+<form style="text-align: center;" action="/myImages" method="POST" enctype="multipart/form-data">
+    <div>
+    <input type="file"
+       id="myImages" name="myImages"
+       accept="image/png, image/jpeg">
+        <!--
+        <input type="text" placeholder="Enter New Note Text" name="text"  style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br>
+            -->
+    </div>
+    <br>
+    <button type="submit" style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;"><strong>Add Image</strong></button>
+</form> 
+<br>
+<center>
+    <a href="deleteImages"><button style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;"><strong>Delete All Images</strong></button></a>
+</center>
+{% endblock %} 
