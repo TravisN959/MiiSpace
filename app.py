@@ -155,15 +155,16 @@ def settingsPage():
             password = request.form['password']
             repeatPass = request.form['repeatPassword']
             phoneForm = request.form['phone']
-            if(len(password) != 0 and password != repeatPass): #check for repeat password
+            if(password != repeatPass): #check for repeat password
                 return render_template('settingsAccount.html', name=name, username=username, phone=phone,ERROR=True, ERROR_MSG="Passwords must be the same", signedIn= isloggedIn())
             else:
-                miispaceDB.setPassword(username, password)
+                if(password):
+                    miispaceDB.setPassword(username, password)
             miispaceDB.setPhone(username, phoneForm)
             miispaceDB.setName(username, nameForm)
             miispaceDB.setUsername(username, usernameForm)
-
-            return render_template('settingsAccount.html',name=name, username=username, phone=phone, signedIn= isloggedIn(), ERROR=False)
+            session["user"] = usernameForm
+            return render_template('settingsAccount.html',name=nameForm, username=usernameForm, phone=phoneForm, signedIn= isloggedIn(), ERROR=False)
         else:
             return render_template('settingsAccount.html',name=name, username=username, phone=phone, signedIn= isloggedIn())
     else:
