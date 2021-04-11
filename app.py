@@ -84,9 +84,9 @@ def mainPage():
         bgImage = account["bgImage"]
         pictures = account["pictures"]
         sticky_notes = account["sticky_notes"]
+        calendar = account["calendar"]
 
-
-        return render_template('mainPage.html',name=name, signedIn= isloggedIn(), bg = bgImage, pics =pictures, sticky = sticky_notes)
+        return render_template('mainPage.html',name=name, signedIn= isloggedIn(), bg = bgImage, pics =pictures, sticky = sticky_notes, calendar=calendar)
     else:
         return render_template('signin.html', signedIn= isloggedIn())
 
@@ -335,5 +335,49 @@ def deleteSI():
     else:
         return render_template('signin.html', signedIn= isloggedIn())
 
+
+@app.route('/calendar', methods=['POST', 'GET'])
+@app.route('/calendar.html', methods=['POST', 'GET'])
+def makeCalendar():
+    if "user" in session:#checks to see if logged in
+        #process distance from user to rallys
+        if request.method == 'POST':
+            new_text = request.form['calendar']
+            
+            if(new_text==""):
+                account = miispaceDB.getInfo(session["user"])
+                calendar = account["calendar"]
+                return render_template('calendar.html', calendar = calendar ,signedIn= isloggedIn())
+            
+            account = miispaceDB.getInfo(session["user"])
+            name=account["username"]
+            miispaceDB.addCalendar(name,new_text)
+            account = miispaceDB.getInfo(session["user"])
+            calendar = account["calendar"]
+            
+            return render_template('calendar.html', calendar = calendar,signedIn= isloggedIn())
+        else:
+            account = miispaceDB.getInfo(session["user"])
+            calendar = account["calendar"]
+            return render_template('calendar.html', calendar = calendar,signedIn= isloggedIn())
+
+    else:
+        return render_template('signin.html', signedIn= isloggedIn())
+
+@app.route('/removeCalendar')
+def deleteC():
+    if "user" in session:#checks to see if logged in
+        #process distance from user to rallys
+
+        account = miispaceDB.getInfo(session["user"])
+
+        name=account["username"]## testing
+        miispaceDB.removeCalendar(name)
+        account = miispaceDB.getInfo(session["user"])
+        calendar = account["calendar"]
+
+        return render_template('calendar.html',name=name, signedIn= isloggedIn(),calendar=calendar)
+    else:
+        return render_template('signin.html', signedIn= isloggedIn())
 if __name__ == "__main__":
     app.run(debug=True)

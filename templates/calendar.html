@@ -1,0 +1,37 @@
+
+
+{% extends 'base.html' %}
+
+{% block head %}
+<Title>MiiSpace Calendar</Title>
+<script src="https://kit.fontawesome.com/368a12c127.js" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block body %}
+
+<center>
+<h4>Manage Google Calendar</h4>
+
+    {{calendar}}
+<br>
+</center>
+<form style="text-align: center;" action="/calendar" method="POST">
+    <div>
+    
+    <input type="text" placeholder="Calendar Embed Code " name="calendar"  style=" border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br>
+
+    </div>
+    <br>
+    <button type="submit" style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;"><strong>Add</strong></button>
+</form> 
+<br>
+<center>
+    <a href="removeCalendar"><button style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;"><strong>Remove</strong></button></a>
+</center>
+
+
+<center>
+
+
+</center>
+{% endblock %} 

@@ -12,7 +12,7 @@ collection = database.AccountInfo
 #pictures = list(tuple(String, tuple(x,y))), sticky_notes = list(tuple(String, tuple(x,y)))
 
 #remember to make default values in signup function
-def setupAccount(username, password, phone, name, bgImage=[], pictures=[], sticky_notes=[]):
+def setupAccount(username, password, phone, name, bgImage=[], pictures=[], sticky_notes=[], calendar = ""):
     acct = {
         "username" : username,
         "password" : password,
@@ -21,6 +21,7 @@ def setupAccount(username, password, phone, name, bgImage=[], pictures=[], stick
         "sticky_notes" : sticky_notes,
         "phone" : phone,
         "name" : name,
+        "calendar" : calendar
     }
     collection.insert_one(acct)
 
@@ -39,7 +40,7 @@ def deleteNote(name, index):
     notes=(collection.find_one({"username": name})['sticky_notes'])
     del notes[index-1]
     collection.update_one({ "username": name },{"$set": { "sticky_notes": notes }})
-    
+
 def resetNote(name):
     notes=[]
     collection.update_one({ "username": name },{"$set": { "sticky_notes": notes }})
@@ -94,6 +95,15 @@ def validateLogin(username, password):
     else:
         return False
 
+def addCalendar(name, embedCode):
+    theCalendar =(collection.find_one({"username": name})['calendar'])
+    theCalendar = "<div id='draggable' class='ui-widget-content' style='float:left; width: 815px; height: 10px; padding-top: 50px; align-content:center;'>" + embedCode + "</div>"
+    collection.update_one({ "username": name },{"$set": { "calendar": theCalendar }})
+
+def removeCalendar(name):
+    theCalendar =(collection.find_one({"username": name})['calendar'])
+    theCalendar = ""
+    collection.update_one({ "username": name },{"$set": { "calendar": theCalendar }})
 
 
 
