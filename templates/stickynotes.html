@@ -40,4 +40,16 @@
 <center>
     <a href="deleteNotes"><button style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;"><strong>Delete All Notes</strong></button></a>
 </center>
+<center>
+<br>
+<form style="text-align: center;" action="/deleteSpecificNote" method="POST">
+    <button type="submit" style="float:left; margin-left: 39%; border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;"><strong>Remove</strong></button>
+    <input type="text" placeholder="Remove Sticky #: (e.g. 1)" name="deleteSpecificNote"  style="float:left; border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br>
+    
+</form>
+<br>
+{% if ERROR %}
+<h5 style="color: red;text-align: center;">{{ERROR_MSG}}</h5>    
+{% endif %}
+</center>
 {% endblock %} 

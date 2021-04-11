@@ -16,7 +16,7 @@
     {% for pic in images%}
     <tr >
         <td>
-            <img src={{pic}} alt=""></img>
+            <img src={{pic}} alt="" style = "max-height: 200px; max-width:200px;">
         </td>
     </tr>
     {%  endfor %}
@@ -25,9 +25,7 @@
 </center>
 <form style="text-align: center;" action="/myImages" method="POST" enctype="multipart/form-data">
     <div>
-    <input type="file"
-       id="myImages" name="myImages"
-       accept="image/png, image/jpeg">
+        <input type="text" placeholder="Enter Imgur link With .png or .jpg at the end" name="text"  style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br>
         <!--
         <input type="text" placeholder="Enter New Note Text" name="text"  style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br>
             -->
@@ -39,4 +37,18 @@
 <center>
     <a href="deleteImages"><button style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;"><strong>Delete All Images</strong></button></a>
 </center>
+<br>
+<center>
+    <br>
+    <form style="text-align: center;" action="/deleteSpecificImage" method="POST">
+        <button type="submit" style="float:left; margin-left: 39%; border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;"><strong>Remove</strong></button>
+        <input type="text" placeholder="Remove Image #: (e.g. 1)" name="deleteSpecificImage"  style="float:left; border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br>
+        
+    </form>
+    <br>
+    {% if ERROR %}
+    <h5 style="color: red;text-align: center;">{{ERROR_MSG}}</h5>    
+    {% endif %}
+    </center>
+
 {% endblock %} 

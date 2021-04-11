@@ -35,6 +35,11 @@ def addNote(name,new_text):
     notes.append(new_text)
     collection.update_one({ "username": name },{"$set": { "sticky_notes": notes }})
 
+def deleteNote(name, index):
+    notes=(collection.find_one({"username": name})['sticky_notes'])
+    del notes[index-1]
+    collection.update_one({ "username": name },{"$set": { "sticky_notes": notes }})
+    
 def resetNote(name):
     notes=[]
     collection.update_one({ "username": name },{"$set": { "sticky_notes": notes }})
@@ -43,9 +48,14 @@ def resetNote(name):
 def setUsername(oldUser, newUser):
     collection.update_one({"username": oldUser}, {"$set":{"username": newUser}})
     
-def addImage(name,new_image):
+def addImage(name,pic):
     images=(collection.find_one({"username": name})['pictures'])
-    images.append(new_image.filename)
+    images.append(pic)
+    collection.update_one({ "username": name },{"$set": { "pictures": images }})
+
+def deleteImage(name, index):
+    images=(collection.find_one({"username": name})['pictures'])
+    del images[index-1]
     collection.update_one({ "username": name },{"$set": { "pictures": images }})
 
 def resetImage(name):

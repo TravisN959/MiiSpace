@@ -16,6 +16,7 @@
     body{
         background-image: url("{{ url_for('static', filename='images/bulletinboard.jpg') }}");
     }
+    
 
 </style>
 
@@ -32,6 +33,12 @@
     <p style="font-family: Geneva;">{{note}}</p>
 </div>
     {%  endfor %}
+{% for pic in pics %}
+<div id="draggable" class="ui-widget-content" style="float:right; padding:0; height:0;">
+  <img src="{{pic}}" alt="" style = "max-height: 200px; max-width:200px;" >
+</div>
+{% endfor %}
+
 <script>
     var draggableElements = document.getElementsByClassName("draggable");
 

@@ -59,13 +59,13 @@ table tr:nth-child(odd) td{
     background-color: #a8baa9;
     max-width: 200px;
     height:50px;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
     
 }
 table tr:nth-child(even) td{
     background-color:  #dbcdad;
     max-width: 200px;
     height:50px;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
     
 }

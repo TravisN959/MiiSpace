@@ -8,7 +8,6 @@ import miispaceDB
 
 app = Flask(__name__)
 app.secret_key = "miispace"
-UPLOAD_FOLDER = '/uploads'
 
 
 @app.route('/', methods=['POST', 'GET'])
@@ -86,6 +85,7 @@ def mainPage():
         pictures = account["pictures"]
         sticky_notes = account["sticky_notes"]
 
+
         return render_template('mainPage.html',name=name, signedIn= isloggedIn(), bg = bgImage, pics =pictures, sticky = sticky_notes)
     else:
         return render_template('signin.html', signedIn= isloggedIn())
@@ -124,15 +124,16 @@ def myImages():
         #process distance from user to rallys
         if request.method == 'POST':
             
-            new_image = request.files['myImages']
-            if new_image.filename != '':
-                fileName = secure_filename(new_image.filename)
-                new_image.save(os.path.join(app.config['UPLOAD_FOLDER'], fileName))
-                new_image.save(fileName)
+            new_text = request.form['text']
+            if(new_text==""):
+                account = miispaceDB.getInfo(session["user"])
+                pics = account["pictures"]
+                return render_template('myImages.html',images = images,signedIn= isloggedIn())
+                
             
             account = miispaceDB.getInfo(session["user"])
             name=account["username"]
-            miispaceDB.addImage(name,new_image)
+            miispaceDB.addImage(name,new_text)
             account = miispaceDB.getInfo(session["user"])
             imagesList = account["pictures"]
             return render_template('myImages.html',images = imagesList,signedIn= isloggedIn())
@@ -267,6 +268,70 @@ def deleteI():
         pics = account["pictures"]
 
         return render_template('myImages.html',name=name, signedIn= isloggedIn(), images = pics)
+    else:
+        return render_template('signin.html', signedIn= isloggedIn())
+
+
+@app.route('/deleteSpecificNote', methods=['POST', 'GET'])
+def deleteSS():
+    if "user" in session:#checks to see if logged in
+        
+        if request.method == 'POST':
+            new_text = request.form['deleteSpecificNote']
+            try:
+
+                theInt = int(new_text)
+                
+                account = miispaceDB.getInfo(session["user"])
+                
+                if (theInt > len(account["sticky_notes"]) or theInt <= 0):
+                    name=account["username"]## testing
+                    
+                    sticky_notes = account["sticky_notes"]
+                    return render_template('stickynotes.html',name=name, signedIn= isloggedIn(), sticky = sticky_notes, ERROR=True, ERROR_MSG="Invalid Number!")
+                    
+
+                name=account["username"]## testing
+                miispaceDB.deleteNote(name, theInt)
+                account = miispaceDB.getInfo(session["user"])
+                sticky_notes = account["sticky_notes"]
+
+                return render_template('stickynotes.html',name=name, signedIn= isloggedIn(), sticky = sticky_notes)
+            except:
+                account = miispaceDB.getInfo(session["user"])
+                name=account["username"]## testing
+                sticky_notes = account["sticky_notes"]
+                return render_template('stickynotes.html',name=name, signedIn= isloggedIn(), sticky = sticky_notes, ERROR=True, ERROR_MSG="Invalid Number!")
+    else:
+        return render_template('signin.html', signedIn= isloggedIn())
+
+@app.route('/deleteSpecificImage', methods=['POST', 'GET'])
+def deleteSI():
+    if "user" in session:#checks to see if logged in
+        
+        if request.method == 'POST':
+            new_text = request.form['deleteSpecificImage']
+            try:
+
+                theInt = int(new_text)
+
+                account = miispaceDB.getInfo(session["user"])
+                if (theInt > len(account["pictures"]) or theInt <= 0):
+                    name=account["username"]## testing
+                    pics = account["pictures"]
+                    return render_template('myImages.html',name=name, signedIn= isloggedIn(), images = pics, ERROR=True, ERROR_MSG="Invalid Number!")
+
+                name=account["username"]## testing
+                miispaceDB.deleteImage(name, theInt)
+                account = miispaceDB.getInfo(session["user"])
+                pics = account["pictures"]
+
+                return render_template('myImages.html',name=name, signedIn= isloggedIn(), images = pics)
+            except:
+                account = miispaceDB.getInfo(session["user"])
+                name=account["username"]## testing
+                pics = account["pictures"]
+                return render_template('myImages.html',name=name, signedIn= isloggedIn(), images = pics, ERROR=True, ERROR_MSG="Invalid Number!")
     else:
         return render_template('signin.html', signedIn= isloggedIn())
 
