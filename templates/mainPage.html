@@ -7,8 +7,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
 
 
-
-
 <Title>MiiSpace Main Page</Title>
 <style>
     #draggable {
@@ -227,8 +225,17 @@ document.body.appendChild(boxEle);
 <div id='calendar' style="margin: 40px 10px; padding:0; font-family: 'Lucida Grande',Helvetica,Arial,Verdana,sans-serif; font-size:14;">
 
 
+<!-- CALENDAR-->
+<link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.2/fullcalendar.min.css' rel='stylesheet' />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.2/fullcalendar.print.css' media='print' /> 
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.2/fullcalendar.min.js'></script>
+<center>
+<div class="ui-widget-content" style="width:900px">
+    <div id='calendar' style="background-color: white;">
+    </div>
 </div>
-
+</center>
 <!-- JavaScript Includes -->
 
     <script>$(function(){
@@ -337,8 +344,15 @@ document.body.appendChild(boxEle);
     });</script>
 
 
+<script>
+        $(document).ready(function() {
+   
+   $('#calendar').fullCalendar({
+       // our options and callbacks goes here
+   })
 
-
+   });
+</script>
 <script>function changevolume(amount) {
     var audioobject = document.getElementsByClassName("coffee")[0];
     audioobject.volume = amount;
