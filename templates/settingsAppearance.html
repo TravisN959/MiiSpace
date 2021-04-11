@@ -16,10 +16,16 @@
     <center><h1>Account Settings</h1></center>
     <form style="text-align: center;" action="/settingsAppearance" method="POST">
         <div>
-            <img src="{{ url_for('static', filename='images/Sample_User_Icon.png') }}" style="border-radius: 50px;width: 35px;position:absolute; z-index: 2;pointer-events: none;background-color:white;">
-            <input type="text" value="{{name}}" name="name" required style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br>
+            <label>Text color:</label>
+            <input type="color" value={{textColor}} name="textColor" required style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br>
         </div>
         <br>
+        <div>
+            <label>Background color:</label>
+            <input type="color" value={{bgColor}} name="bgColor" required style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br>
+        </div>
+        <br>
+        
         
         <button type="submit" style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;"><strong>Save</strong></button>
     </form> 
