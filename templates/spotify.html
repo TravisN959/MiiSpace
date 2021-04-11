@@ -9,22 +9,22 @@
 {% block body %}
 <img src="{{ url_for('static', filename='images/leaves.png') }}" style="width: 100%;position:absolute; z-index: 2;pointer-events: none;">
 <center>
-<h4>Manage Spotify Playlist</h4>
+<h4 style="margin-top:13%; font-size:30px; font-family:Calistoga"><strong>Manage Spotify Playlist</strong></h4>
 
 <br>
 </center>
 <form style="text-align: center;" action="/spotify" method="POST">
     <div>
     
-    <input type="text" placeholder="Spotify Embed Code " name="playlist"  style=" border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br>
+    <input type="text" placeholder="Spotify Embed Code " name="playlist"  style=" border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;font-family:Calistoga"><br>
 
     </div>
     <br>
-    <button type="submit" style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;"><strong>Add</strong></button>
+    <button type="submit" style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;font-family:Calistoga"><strong>Add</strong></button>
 </form> 
 <br>
 <center>
-    <a href="removePlaylist"><button style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;"><strong>Remove</strong></button></a>
+    <a href="removePlaylist"><button style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;font-family:Calistoga"><strong>Remove</strong></button></a>
 </center>
 
 

@@ -8,14 +8,14 @@
 {% block body %}
 <img src="{{ url_for('static', filename='images/leaves.png') }}" style="width: 100%;position:absolute; z-index: 2;pointer-events: none;">
 <center>
-<h4>Edit Images</h4>
+<h4 style="margin-top:8%; font-size:30px; font-family:Calistoga;"><strong>Edit Images</strong></h4>
 <table>
     <tr>
-        <th style="text-align:center">Current Images</th>
+        <th style="text-align:center; font-size:22px; font-family:Calistoga;">Current Images</th>
     </tr>
     {% for pic in images%}
     <tr >
-        <td>
+        <td style ="font-family:Calistoga;">
             <img src={{pic}} alt="" style = "max-height: 200px; max-width:200px;">
         </td>
     </tr>
@@ -25,29 +25,29 @@
 </center>
 <form style="text-align: center;" action="/myImages" method="POST" enctype="multipart/form-data">
     <div>
-        <input type="text" required placeholder="Imgur link w/ .jpg" name="text"  style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br>
+        <input type="text" required placeholder="Imgur link w/ .jpg" name="text"  style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC; font-family:Calistoga;"><br>
         <!--
         <input type="text" placeholder="Enter New Note Text" name="text"  style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br>
             -->
     </div>
     <br>
-    <button type="submit" style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;"><strong>Add Image</strong></button>
+    <button type="submit" style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9; font-family:Calistoga;"><strong>Add Image</strong></button>
 </form> 
 <br>
 <center>
-    <a href="deleteImages"><button style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;"><strong>Delete All Images</strong></button></a>
+    <a href="deleteImages"><button style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9; font-family:Calistoga;"><strong>Delete All Images</strong></button></a>
 </center>
 <br>
 <center>
     <br>
     <form style="text-align: center;" action="/deleteSpecificImage" method="POST">
-        <button type="submit" style="float:left; margin-left: 39%; border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;"><strong>Remove</strong></button>
-        <input type="text" placeholder="Remove Image #: (e.g. 1)" name="deleteSpecificImage"  style="float:left; border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br>
+        <button type="submit" style="float:left; margin-left: 39%; border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9; font-family:Calistoga;"><strong>Remove</strong></button>
+        <input type="text" placeholder="Remove Image #: (e.g. 1)" name="deleteSpecificImage"  style="float:left; border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC; font-family:Calistoga;"><br>
         
     </form>
     <br>
     {% if ERROR %}
-    <h5 style="color: red;text-align: center;">{{ERROR_MSG}}</h5>    
+    <h5 style="color: red;text-align: center; font-family:Calistoga;">{{ERROR_MSG}}</h5>    
     {% endif %}
     </center>
 
