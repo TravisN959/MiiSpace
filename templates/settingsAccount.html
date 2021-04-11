@@ -6,37 +6,35 @@
 {% endblock %}
 
 {% block body %}
-
+<div style="background-color:#a8baa9; width:50%; margin-left:30%; margin-right:20%; margin-top:10%; border-radius: 50px 50px 50px 50px;">
 <div class="">
-    <br>
-    <br>
-    <br>
-    <center><h1>Account Settings</h1></center>
+
+    <center><h1 style="font-family:Calistoga;" ><strong>Account Settings</strong></h1></center>
     <form style="text-align: center;" action="/settingsAccount" method="POST">
         <div>
             <img src="{{ url_for('static', filename='images/Sample_User_Icon.png') }}" style="border-radius: 50px;width: 35px;position:absolute; z-index: 2;pointer-events: none;background-color:white;">
-            <input type="text" value="{{name}}" name="name" required style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br>
+            <input type="text" value="{{name}}" name="name" required style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC; font-family:Calistoga;"><br>
         </div>
         <br>
         <div>
             <img src="{{ url_for('static', filename='images/Sample_User_Icon.png') }}" style="border-radius: 50px;width: 35px;position:absolute; z-index: 2;pointer-events: none;background-color:white;">
-            <input type="text" value="{{username}}" name="username" required style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br>
+            <input type="text" value="{{username}}" name="username" required style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC; font-family:Calistoga;"><br>
         </div>
         <br>
         <div>
             <img src="{{ url_for('static', filename='images/unlock.png') }}" style="border-radius: 50px;width: 35px;position:absolute; z-index: 2;pointer-events: none;background-color:white;">
-            <input type="password" placeholder="Enter Password" name="password"  style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br><br>
+            <input type="password" placeholder="Enter Password" name="password"  style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC; font-family:Calistoga;"><br><br>
         </div>
         <div>
             <img src="{{ url_for('static', filename='images/lock.png') }}" style="border-radius: 50px;width: 35px;position:absolute; z-index: 2;pointer-events: none;background-color:white;">
-            <input type="password" placeholder="Re-Enter Password" name="repeatPassword" style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br><br>
+            <input type="password" placeholder="Re-Enter Password" name="repeatPassword" style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC; font-family:Calistoga;"><br><br>
         </div>
         <div>
             <img src="{{ url_for('static', filename='images/Sample_User_Icon.png') }}" style="border-radius: 50px;width: 35px;position:absolute; z-index: 2;pointer-events: none;background-color:white;">
-            <input type="number" value="{{phone}}" name="phone" required style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC;"><br>
+            <input type="number" value="{{phone}}" name="phone" required style="border-radius: 25px;font-size:20px;text-align: center;background-color: #DCDCDC; font-family:Calistoga;"><br>
         </div>
         <br>
-        <button type="submit" style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;"><strong>Save</strong></button>
+        <button type="submit" style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #806854; font-family:Calistoga;"><strong>Save</strong></button>
     </form> 
     {% if ERROR %}
     <br>
@@ -45,6 +43,7 @@
     <br>
     <h5 style="color: green;text-align: center;">{{ERROR_MSG}}</h5>
     {% endif %}
+</div>
 </div>
 <br>
 <br>

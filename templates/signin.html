@@ -11,13 +11,15 @@
 
 <div data-aos="fade-up"data-aos-anchor-placement="top-bottom"data-aos-duration="2000" >
 <center>
-<div class="content"style="background-image:url('{{ url_for('static', filename='images/login.png') }}');background-repeat:no-repeat;background-position: center center;background-size: contain">
+<div class="content"style="background-image:url('{{ url_for('static', filename='images/login.png') }}');background-repeat:no-repeat;background-position: center center;background-size: contain; margin-top:5%;">
     
     <div class="">
         <br>
         <br>
         <br>
         <center><img src="{{ url_for('static', filename='images/logo.png') }}" style="width: 200px; z-index: 2;pointer-events: none;"></center>
+        
+        
         <center><h1 >Log In</h1></center>
         <form style="text-align: center;" action="/signin" method="POST" >
             <div>
@@ -35,6 +37,7 @@
 
         <h5> ──────── or ──────── </h5>
         <a href=signup><button style="border-radius: 25px;font-size:20px;text-align: center;width:225px;background-color: #a8baa9;"><strong>Sign Up</strong></button></a>
+        
         {% if ERROR %}
         <br>
         <h5 style="color: red;text-align: center;">{{ERROR_MSG}}</h5>    
