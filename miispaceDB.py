@@ -12,7 +12,7 @@ collection = database.AccountInfo
 #pictures = list(tuple(String, tuple(x,y))), sticky_notes = list(tuple(String, tuple(x,y)))
 
 #remember to make default values in signup function
-def setupAccount(username, password, phone, name, bgImage=[], pictures=[], sticky_notes=[], calendar = ""):
+def setupAccount(username, password, phone, name, bgImage=[], pictures=[], sticky_notes=[], calendar = "",playlist=""):
     acct = {
         "username" : username,
         "password" : password,
@@ -21,7 +21,8 @@ def setupAccount(username, password, phone, name, bgImage=[], pictures=[], stick
         "sticky_notes" : sticky_notes,
         "phone" : phone,
         "name" : name,
-        "calendar" : calendar
+        "calendar" : calendar,
+        "playlist" : playlist
     }
     collection.insert_one(acct)
 
@@ -105,6 +106,15 @@ def removeCalendar(name):
     theCalendar = ""
     collection.update_one({ "username": name },{"$set": { "calendar": theCalendar }})
 
+def addPlaylist(name, embedCode):
+    playlist =(collection.find_one({"username": name})['playlist'])
+    playlist = "<div id='draggable' class='ui-widget-content' style='float:left; width: 315px; height: 10px; padding-top: 50px; align-content:center;background-color: #a3e5ff;'>" + embedCode + "</div>"
+    collection.update_one({ "username": name },{"$set": { "playlist": playlist }})
+
+def removePlaylist(name):
+    playlist =(collection.find_one({"username": name})['playlist'])
+    playlist = ""
+    collection.update_one({ "username": name },{"$set": { "playlist": playlist }})
 
 
 

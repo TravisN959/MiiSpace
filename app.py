@@ -85,8 +85,8 @@ def mainPage():
         pictures = account["pictures"]
         sticky_notes = account["sticky_notes"]
         calendar = account["calendar"]
-
-        return render_template('mainPage.html',name=name, signedIn= isloggedIn(), bg = bgImage, pics =pictures, sticky = sticky_notes, calendar=calendar)
+        playlist = account["playlist"]
+        return render_template('mainPage.html',name=name, signedIn= isloggedIn(), bg = bgImage, pics =pictures, sticky = sticky_notes, calendar=calendar, playlist=playlist)
     else:
         return render_template('signin.html', signedIn= isloggedIn())
 
@@ -379,5 +379,55 @@ def deleteC():
         return render_template('calendar.html',name=name, signedIn= isloggedIn(),calendar=calendar)
     else:
         return render_template('signin.html', signedIn= isloggedIn())
+
+@app.route('/spotify', methods=['POST', 'GET'])
+@app.route('/spotify.html', methods=['POST', 'GET'])
+def makeSpotify():
+    if "user" in session:#checks to see if logged in
+        #process distance from user to rallys
+        if request.method == 'POST':
+            new_text = request.form['playlist']
+            
+            if(new_text==""):
+                account = miispaceDB.getInfo(session["user"])
+                playlist = account["playlist"]
+                return render_template('spotify.html', playlist = playlist ,signedIn= isloggedIn())
+            
+            account = miispaceDB.getInfo(session["user"])
+            name=account["username"]
+            miispaceDB.addPlaylist(name,new_text)
+            account = miispaceDB.getInfo(session["user"])
+            playlist = account["playlist"]
+            
+            return render_template('spotify.html', playlist = playlist,signedIn= isloggedIn())
+        else:
+            account = miispaceDB.getInfo(session["user"])
+            if "playlist" in account:
+                playlist = account["playlist"]
+            else:
+                playlist = ""
+            return render_template('spotify.html', playlist = playlist,signedIn= isloggedIn())
+
+    else:
+        return render_template('signin.html', signedIn= isloggedIn())
+
+@app.route('/removePlaylist')
+def deletePlaylist():
+    if "user" in session:#checks to see if logged in
+        #process distance from user to rallys
+
+        account = miispaceDB.getInfo(session["user"])
+
+        name=account["username"]## testing
+        miispaceDB.removePlaylist(name)
+        account = miispaceDB.getInfo(session["user"])
+        playlist = account["playlist"]
+
+        return render_template('spotify.html',name=name, signedIn= isloggedIn(),playlist=playlist)
+    else:
+        return render_template('signin.html', signedIn= isloggedIn())
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)
